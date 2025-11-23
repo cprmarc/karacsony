@@ -1,0 +1,5 @@
+{
+  "name": "Karácsonyi Titkos Húzás",
+  "description": "Egy ünnepi hangulatú alkalmazás karácsonyi ajándékhúzáshoz, ahol a Gemini ír személyre szóló ünnepi rímet a kiválasztottnak.",
+  "requestFramePermissions": []
+}

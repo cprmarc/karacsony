@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="hu">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Karácsonyi Húzás</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              christmas: ['"Mountains of Christmas"', 'serif'],
+              body: ['"Quicksand"', 'sans-serif'],
+            },
+            colors: {
+              xmasRed: '#D42426',
+              xmasGreen: '#165B33',
+              xmasGold: '#F8B229',
+              xmasCream: '#F8F2E4',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: #1a4731;
+        background-image: radial-gradient(#D42426 1px, transparent 1px), radial-gradient(#F8B229 1px, transparent 1px);
+        background-size: 20px 20px;
+        background-position: 0 0, 10px 10px;
+      }
+      .snow-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 50;
+        overflow: hidden;
+      }
+      .snowflake {
+        position: absolute;
+        top: -10px;
+        background: white;
+        border-radius: 50%;
+        opacity: 0.8;
+        animation: fall linear infinite;
+      }
+      @keyframes fall {
+        to {
+          transform: translateY(100vh);
+        }
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.30.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "firebase/app": "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js",
+    "firebase/database": "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js",
+    "firebase/": "https://aistudiocdn.com/firebase@^12.6.0/"
+  }
+}
+</script>
+</head>
+  <body>
+    <div id="root"></div>
+    <div id="snow-container" class="snow-container"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+        // Simple script to generate snowflakes
+        const snowContainer = document.getElementById('snow-container');
+        const createSnowflake = () => {
+            const flake = document.createElement('div');
+            flake.classList.add('snowflake');
+            flake.style.left = Math.random() * 100 + 'vw';
+            flake.style.animationDuration = Math.random() * 3 + 2 + 's';
+            flake.style.width = Math.random() * 5 + 2 + 'px';
+            flake.style.height = flake.style.width;
+            snowContainer.appendChild(flake);
+            setTimeout(() => {
+                flake.remove();
+            }, 5000);
+        };
+        setInterval(createSnowflake, 100);
+    </script>
+  </body>
+</html>
